@@ -11,14 +11,27 @@
 
 #---------FUNCTIONS---------------------------------------------------------------------------------------
 
-
 #def difference(people, max_cap):
-    #diff = max_cap - people 
+    #remain = max_cap - people 
+    #return remain
 
-    #return diff
+
+#def diff(decision):
+    #while decision != "y" and decision != "n":
+        #decision = input "\nInvaild answer try again"
+        
+        #return decision 
 
 
-#def difference()
+
+
+
+
+
+
+
+
+
 
 #print(f"People: 30, Room Cap: 50, Diff; {difference(30,50)}")
 #print(f"People: 33, Room Cap: 25, Diff; {difference(33,25)}")

@@ -16,11 +16,11 @@
     #return remain
 
 
-#def diff(decision):
-    #while decision != "y" and decision != "n":
-        #decision = input "\nInvaild answer try again"
+#def decision(response):
+    #while response != "y" and response != "n":
+        #response = input "\nInvaild answer try again"
         
-        #return decision 
+        #return response 
 
 
 

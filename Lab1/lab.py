@@ -7,7 +7,13 @@
 
 #VARIBLE DICTIONARY
 #---------------------------------------------------------------------------------------------------------
-
+#restart: Stores the user's decision to restart the program ('y' or 'n').
+#meeting: Stores the name of the meeting entered by the user.
+#capacity: Stores the maximum capacity of the meeting room entered by the user.
+#AmountAttendees: Stores the number of people attending the meeting entered by the user.
+#remainingSeats: Stores the result of the difference() function, representing remaining or excess capacity.
+#people: Number of people attending the meeting.
+#max_cap: Maximum capacity of the meeting room.
 
 #---------FUNCTIONS---------------------------------------------------------------------------------------
 
@@ -48,4 +54,4 @@ while restart == "y":
     else:
         print("Error: Invalid")
 
-    restart = decision(input("\nDo you want to restart? (y/n): ").strip().lower())
+    restart = decision(input("\nDo you want to restart? (y/n): ").lower())

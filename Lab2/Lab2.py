@@ -33,12 +33,12 @@
 import csv
 
 def difference(people, max_cap):
-    """Calculate the difference between the number of people and the maximum capacity."""
+    #Calculate the difference between the number of people and the maximum capacity.
     remain = people - max_cap
     return remain
 
 def process_rooms(file_path):
-    """Process the room data from a CSV file and display rooms that are over capacity."""
+    #Process the room data from a CSV file and display rooms that are over capacity.
     num_records = 0
     num_over_capacity = 0
 

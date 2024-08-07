@@ -44,7 +44,7 @@ def process_rooms(file_path):
 
     try:
         with open(file_path, mode='r') as file:
-            reader = csv.DictReader(file)
+            reader = csv.reader(file)
             
             for SeatRow in reader:
                 num_records += 1

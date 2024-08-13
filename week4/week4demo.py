@@ -1,105 +1,77 @@
-#W4D2, 1D, 2D Lists, with Hand population 
+# W4D2 SE111 Review Demo - split into prts in Canvas
 
+# Braedin Yarletts
+# Lab #4 
+# August 12th
 
-import random
+# VARIABLE DICTIONARY
+#---------------------------------------------------------------------------------------------------------
 
-#create some hand-populated 1D lists
+import csv
 
-dragon_names = [
-    "Drogon", 
-    "Silverwing", 
-    "Verimthor", 
-    "Syrax", 
-    "Meleys"
-    ]
-
-dragon_alias = [
-    "Good Boi",
-    "The Silver Lady",
-    "The Bronze Fury",
-    "The Goddess",
-    "The Red Queen"
-    ]
-
-
-records = len(dragon_names) #records = 5
-
-
-#simply display the parallel lists with each corresponding values on its own line
-
-print(f"{"NAMES":12}        \t{"ALIAS"}")
-print("-------------------------------------------------------")
-for i in range(0, records):
-    print(f"{dragon_names[i]:12} AKA \t{dragon_alias[i]}")
-print("-------------------------------------------------------")
 
 dragon_ages = []
-for i in range(0, len(dragon_names)):
-    dragon_ages.append(random.randint(0, 500))
+dragon_names = []
+dragon_alias = []
+allegiances = []
+house_mottos = {
+    "House Stark": "Winter is Coming",
+    "Night's Watch": "The Watcher on the Wall",
+    "House Tully": "Family, Duty, Honor",
+    "House Lannister": "Hear Me Roar!",
+    "House Baratheon": "Ours is the Fury",
+    "House Targaryen": "Fire and Blood"
+}
 
+#CSV file and populate lists
+with open('lab4a.csv') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        name, allegiance, age, alias, house = row
+        dragon_names.append(name)
+        dragon_alias.append(alias)
+        allegiances.append(house)
+        #Set age to an int since its the only number column
+        dragon_ages.append(int(age))
 
-
-for i in range(0, len(dragon_names)):
-    print(f"{dragon_names[i]:12}     \t{dragon_ages[i]:5}y.o.")
-
-
-
-#add all of the 1D lists to a new list, creating a 2D list!
-'''
-dragon_info = [
-    dragon_names,
-    dragon_alias,
-    dragon_ages
-]
-'''
-#for i in range()
-
+#Create a list of dragon info including House Mottoes
 dragon_info = []
+for i in range(len(dragon_names)):
+    motto = house_mottos.get(allegiances[i], "Unknown")
+    dragon_info.append([
+        dragon_names[i],
+        dragon_alias[i],
+        dragon_ages[i],
+        allegiances[i],
+        motto
+    ])
 
-for i in range(0, len(dragon_names)):
-    dragon_info.append([dragon_names[i], dragon_alias[i], dragon_ages[i]])
+#Each record fully with the House Mottos
+print(f"{'NAME':12}  {'ALIAS':15} {'AGE':5} {'ALLEGIANCE':15} {'MOTTO'}")
+print("---------------------------------------------------------------")
+for i in range(len(dragon_info)):
+    name, alias, age, allegiance, motto = dragon_info[i]
+    print(f"{name:12}  {alias:15} {age:5} {allegiance:15} {motto}")
+print("---------------------------------------------------------------")
 
-for i in range(0, len(dragon_info)):
-    print(f"REC#{i} LIST: {dragon_info[i]}")
+#Calculating the average age
+total_age = sum(record[2] for record in dragon_info)
+average_age = total_age / len(dragon_info)
 
+#Printing total number of people and average age
+print(f"Total number of people: {len(dragon_info)}")
+print(f"Average age: {average_age:.0f}")
 
-    for x in range(0, len(dragon_info[i])):
-        print(f"{dragon_info[i][x]:10}", end = " ")
+# Tally for each allegiance
+allegiance_tally = {}
+for record in dragon_info:
+    allegiance = record[3]
+    if allegiance in allegiance_tally:
+        allegiance_tally[allegiance] += 1
+    else:
+        allegiance_tally[allegiance] = 1
 
-    print()
-print("------------------------------------------------------------")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-search_dragon = input("Who are you looking for?")
-
-found = "n/a"
-
-
-
-for i in range(0, len(dragon_names)):
-
-    if search_dragon.lower() == dragon_names[i].lower():
-
-        found = i
-
-if found != "n/a":
-    print(f"Your search for {search_dragon} was FOUND in record #{found}")
-
-    print(f"NAME:{dragon_names[found]} \tALIAS:{dragon_alias[found]} \tAGE:{dragon_ages[found]}")
-else:
-    print(f"Sorry, your earch for {search_dragon} was *NOT FOUND.")
-    
+#Print tallies of the allegiance
+print("Allegiance tallies:")
+for allegiance, count in allegiance_tally.items():
+    print(f"{allegiance}: {count}")
